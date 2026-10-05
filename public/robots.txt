@@ -1,0 +1,7 @@
+# AI Project Launchpad — free NxtWave workshop
+User-agent: *
+Allow: /
+# The campaign dashboard is a demo surface, not public content.
+Disallow: /admin
+
+Sitemap: https://ai-project-launchpad.vercel.app/sitemap.xml

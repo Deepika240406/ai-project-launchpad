@@ -1,0 +1,2 @@
+# SPA fallback for Cloudflare Pages / Netlify (kept in /public so it ships in dist/)
+/*  /index.html  200

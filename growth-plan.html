@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Growth Plan — Build Your First AI Project in 60 Minutes | NxtWave</title>
+    <style>
+      /* ============================================================
+         Two-page growth plan. Light theme, matching the product,
+         print-safe (exact colours, A4 landscape, page breaks controlled).
+         No external fonts, images or scripts — opens anywhere.
+         ============================================================ */
+      :root {
+        /* Light theme, matching the product. White paper, ink text, lime fills.
+           Indigo leads: --acid is every interactive surface, --acid-ink is indigo
+           deep enough to sit on a tint. --lime is the highlighter only (ink on it
+           is 16.4:1, but lime on white is 1.17:1 so it never carries text). */
+        --bg: #ffffff;
+        --bg-2: #f8f9fc;
+        --bg-3: #f1f4f9;
+        --line: rgba(11, 15, 25, 0.1);
+        --text: #0b0f19;
+        --muted: #545d73;
+        --faint: #8a93a6;
+        --acid: #4f46e5;       /* indigo leads */
+        --acid-ink: #3730a3;    /* indigo on tints */
+        --lime: #ccff4d;        /* the highlighter, used sparingly */
+        --cy: #0a7186;
+        --violet: #6d28d9;
+        --ember: #b04a12;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body { margin: 0; padding: 0; background: #eef1f7; }
+
+      body {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif;
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        font-feature-settings: "cv02", "cv03", "ss01";
+      }
+
+      .toolbar {
+        display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+        max-width: 1180px; margin: 0 auto; padding: 18px 24px 6px; color: var(--muted); font-size: 13px;
+      }
+      .toolbar strong { color: var(--text); }
+      .toolbar button {
+        background: var(--acid); color: #fff; border: 0; border-radius: 10px;
+        padding: 10px 16px; font-weight: 700; font-size: 13px; cursor: pointer;
+      }
+
+      .page {
+        width: 1180px;
+        max-width: calc(100% - 32px);
+        margin: 18px auto 28px;
+        padding: 42px 48px 44px;
+        background:
+          radial-gradient(900px 420px at 8% -12%, rgba(79, 70, 229, 0.09), transparent 60%),
+          radial-gradient(700px 380px at 96% 2%, rgba(99, 102, 241, 0.07), transparent 60%),
+          linear-gradient(180deg, #ffffff, #fbfcfe);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .page::before {
+        content: "";
+        position: absolute; inset: 0; pointer-events: none;
+        background-image:
+          linear-gradient(to right, rgba(11,15,25,0.035) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(11,15,25,0.035) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(120% 80% at 50% 0%, #000 25%, transparent 80%);
+      }
+      .page > * { position: relative; }
+
+      header.doc { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .mark { width: 34px; height: 34px; border-radius: 10px; border: 1px solid rgba(79,70,229,0.3); background: rgba(79,70,229,0.12); display: grid; place-items: center; }
+      .mark svg { width: 16px; height: 16px; }
+      .brand h1 { margin: 0; font-size: 16px; letter-spacing: -0.02em; }
+      .brand p { margin: 3px 0 0; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+      .doc-meta { text-align: right; font-size: 11px; color: var(--faint); line-height: 1.7; }
+      .doc-meta b { color: var(--muted); font-weight: 600; }
+
+      .lede { margin-top: 22px; display: grid; grid-template-columns: 1.55fr 1fr; gap: 28px; }
+      .lede h2 { margin: 0; font-size: 30px; line-height: 1.12; letter-spacing: -0.035em; font-weight: 600; }
+      .lede h2 span { color: var(--acid-ink); }
+      .lede p { margin: 14px 0 0; color: var(--muted); font-size: 13.5px; line-height: 1.65; }
+
+      .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; align-content: start; }
+      .stat { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: #ffffff; box-shadow: 0 1px 2px rgba(11,15,25,0.04); }
+      .stat span { display: block; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+      .stat b { display: block; margin-top: 6px; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+      .stat.acid b { color: var(--acid-ink); }
+      .stat.cy b { color: var(--cy); }
+
+      .section-title { margin: 30px 0 14px; display: flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+      .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+      .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .cols-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+
+      .card { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; background: #ffffff; box-shadow: 0 1px 2px rgba(11,15,25,0.04); }
+      .card h3 { margin: 0 0 10px; font-size: 13px; letter-spacing: -0.01em; }
+      .card p { margin: 0; font-size: 12px; line-height: 1.62; color: var(--muted); }
+      .card ul { margin: 8px 0 0; padding: 0; list-style: none; }
+      .card li { position: relative; padding-left: 16px; font-size: 12px; line-height: 1.6; color: var(--muted); margin-bottom: 6px; }
+      .card li::before { content: ""; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 99px; background: var(--acid-ink); }
+      .card.accent { border-color: rgba(79,70,229,0.28); background: rgba(79,70,229,0.06); }
+      .card.accent li::before { background: var(--acid-ink); }
+      .card.violet { border-color: rgba(91,61,245,0.28); background: rgba(91,61,245,0.05); }
+      .card.violet li::before { background: var(--violet); }
+
+      table { width: 100%; border-collapse: collapse; font-size: 12px; }
+      th { text-align: left; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); font-weight: 600; padding: 0 10px 8px 0; border-bottom: 1px solid var(--line); }
+      td { padding: 9px 10px 9px 0; border-bottom: 1px solid rgba(11,15,25,0.07); color: var(--muted); vertical-align: top; line-height: 1.5; }
+      td strong { color: var(--text); font-weight: 600; }
+      td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      tr.total td { border-bottom: 0; color: var(--text); font-weight: 600; }
+      tr.total td.num { color: var(--acid-ink); }
+      .pill { display: inline-block; padding: 2px 7px; border-radius: 99px; font-size: 10px; font-weight: 600; border: 1px solid var(--line); }
+      .pill.acid { color: var(--acid-ink); border-color: rgba(74,117,0,0.3); background: rgba(204,255,77,0.24); }
+      .pill.cy { color: var(--cy); border-color: rgba(14,147,176,0.32); background: rgba(14,147,176,0.08); }
+      .pill.violet { color: var(--violet); border-color: rgba(91,61,245,0.3); background: rgba(91,61,245,0.08); }
+
+      .loop { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .loop .step { border: 1px solid var(--line); border-radius: 10px; padding: 8px 11px; font-size: 11px; color: var(--text); background: #ffffff; box-shadow: 0 1px 2px rgba(11,15,25,0.04); }
+      .loop .arrow { color: var(--acid-ink); font-size: 12px; }
+
+      .bar { height: 10px; border-radius: 99px; background: rgba(11,15,25,0.08); overflow: hidden; display: flex; }
+      .bar i { display: block; height: 100%; }
+
+      .funnel { display: grid; gap: 6px; }
+      .funnel .row { display: grid; grid-template-columns: 1.5fr 3fr auto; gap: 12px; align-items: center; }
+      .funnel .row span { font-size: 11.5px; color: var(--muted); }
+      .funnel .row b { font-size: 13px; font-variant-numeric: tabular-nums; }
+      .funnel .track { height: 18px; border-radius: 6px; background: rgba(11,15,25,0.07); overflow: hidden; }
+      .funnel .track i { display: block; height: 100%; background: linear-gradient(90deg, #3730a3, #6366f1); }
+      .funnel .row.hi .track i { background: linear-gradient(90deg, #4f46e5, #7c3aed); }
+      .funnel .row.hi b { color: var(--acid-ink); }
+      .conv { font-size: 10px; color: var(--faint); }
+
+      .footnote { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; font-size: 10.5px; color: var(--faint); line-height: 1.6; }
+
+      /* ---------------- print ---------------- */
+      @page { size: A4 landscape; margin: 10mm; }
+      @media print {
+        html, body { background: #fff; }
+        .page { background: #fff !important; }
+        .page::before { display: none !important; }
+        .card, .stat, .loop .step { box-shadow: none !important; }
+        .toolbar { display: none !important; }
+        .page {
+          width: 100%; max-width: none; margin: 0; padding: 0 0 8mm; border: 0; border-radius: 0;
+          page-break-after: always; break-after: page;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        .page:last-of-type { page-break-after: auto; break-after: auto; }
+      }
+      @media (max-width: 1080px) {
+        .lede, .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr; }
+        .page { padding: 26px 22px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="toolbar">
+      <p style="margin:0">
+        <strong>Growth Plan — 2 pages.</strong> Use <em>Print → Save as PDF</em> for the submission copy.
+      </p>
+      <button onclick="window.print()">Print / Save as PDF</button>
+    </div>
+
+    <!-- ============================== PAGE 1 ============================== -->
+    <section class="page">
+      <header class="doc">
+        <div class="brand">
+          <span class="mark">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M6 18V6l12 12V6" stroke="#CCFF4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div>
+            <h1>Growth Plan — AI Project Launchpad</h1>
+            <p>NxtWave Growth Intern Challenge · Round 1</p>
+          </div>
+        </div>
+        <div class="doc-meta">
+          <div><b>Goal</b> 500 registrations</div>
+          <div><b>Budget</b> ₹2,000 · <b>Window</b> 7 days</div>
+          <div><b>Audience</b> Final-year engineering students</div>
+        </div>
+      </header>
+
+      <div class="lede">
+        <div>
+          <h2>Plan to get 500 final-year students into a free 60-minute AI workshop — <span>without spending a rupee on ads.</span></h2>
+          <p>
+            The plan is not a channel list; it is one loop. The product converts a visitor into a
+            project-matched registrant and hands them a referral link at the moment of peak enthusiasm. Peer
+            sharing then carries half the target at zero cost per acquisition, and the ₹2,000 buys the
+            permission and creative that start the loop.
+          </p>
+        </div>
+        <div class="stat-grid">
+          <div class="stat acid"><span>Target</span><b>500</b></div>
+          <div class="stat"><span>Cost / registration</span><b>₹4.00</b></div>
+          <div class="stat cy"><span>Referral share</span><b>50%</b></div>
+          <div class="stat"><span>Channels used</span><b>5</b></div>
+        </div>
+      </div>
+
+      <h2 class="section-title">1 — Who exactly, and why they care</h2>
+      <div class="cols-2">
+        <div class="card">
+          <h3>Primary persona — “Placement Season Priya”</h3>
+          <ul>
+            <li>Final year (2026), tier-2/3 engineering college, CSE/IT/AI-DS, 6.5–8 CGPA</li>
+            <li>Knows basic Python; has 2–3 academic projects nobody would ask about</li>
+            <li>Placements start in ~6 weeks; resume has no project she is proud of</li>
+            <li>Phone-first. Gets information from WhatsApp groups and seniors, not LinkedIn</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Why she registers (motivation ladder)</h3>
+          <ul>
+            <li><strong>Surface:</strong> “AI is the future.” Gets a click, not attendance</li>
+            <li><strong>Utility:</strong> AI appears in job descriptions she is applying to</li>
+            <li><strong>Identity:</strong> wants to be someone who builds AI, not someone who watches it</li>
+            <li><strong>Fear:</strong> final year ends in months and the resume is undefendable — the real driver</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="section-title">2 — The five registration triggers, in the order they fire</h2>
+      <div class="cols-3">
+        <div class="card accent">
+          <h3>1. A specific idea, not a topic</h3>
+          <p>“AI Resume Analyzer” beats “learn AI”. The hero generator removes the “I don’t know what I’d build” objection in two seconds.</p>
+        </div>
+        <div class="card accent">
+          <h3>2. A 60-minute single sitting</h3>
+          <p>Small enough to say yes to immediately; the deadline is why they actually finish. Every catalogue project is scoped to it.</p>
+        </div>
+        <div class="card accent">
+          <h3>3. Zero prerequisites, stated</h3>
+          <p>Not just “beginners welcome” — we name what they need (a laptop) and what they don’t (GPU, paid tools, prior AI).</p>
+        </div>
+        <div class="card accent">
+          <h3>4. Visible peers already in</h3>
+          <p>Seat counter, activity ticker and leaderboard make it look like something their classmates joined.</p>
+        </div>
+        <div class="card accent">
+          <h3>5. A reason to invite friends</h3>
+          <p>Referral code + milestone ladder turns registration into an entry ticket to a game, not a form submit.</p>
+        </div>
+        <div class="card violet">
+          <h3>Explicitly rejected</h3>
+          <p>Paid ads (wrong audience at ₹2,000), cash prizes (unaffordable, non-compounding), fake testimonials and fake expiry timers (trust-destroying).</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">3 — Where the 500 come from</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>Channel</th><th class="num">Registrations</th><th class="num">Spend</th>
+            <th>Why it works</th><th>What we actually do</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td><td><strong>WhatsApp college communities</strong></td><td class="num">180</td><td class="num">₹400</td>
+            <td>Highest-trust channel for Indian students; a classmate’s message beats any ad</td>
+            <td>Ambassadors post a project-card creative (not an invite) in 25 final-year groups</td>
+          </tr>
+          <tr>
+            <td>2</td><td><strong>College coding clubs &amp; placement cells</strong></td><td class="num">115</td><td class="num">₹800</td>
+            <td>Permissioned access to exactly the students who care about a portfolio</td>
+            <td>Club leads get per-college links + a countable target and a college scoreboard</td>
+          </tr>
+          <tr>
+            <td>3</td><td><strong>Referral loop (in-product)</strong></td><td class="num">100</td><td class="num">₹300</td>
+            <td>The only compounding channel; ₹0 cost per acquisition</td>
+            <td>Success screen issues a project card + code + pre-filled WhatsApp message</td>
+          </tr>
+          <tr>
+            <td>4</td><td><strong>Email (placement lists)</strong></td><td class="num">45</td><td class="num">₹200</td>
+            <td>Cheap, scalable, low intent — a reminder layer, never the primary ask</td>
+            <td>One announcement + one 24h reminder to opted-in department lists</td>
+          </tr>
+          <tr>
+            <td>5</td><td><strong>LinkedIn student communities</strong></td><td class="num">30</td><td class="num">₹300</td>
+            <td>Small volume, high credibility; legitimises the campaign when students search it</td>
+            <td>Ambassador/founder posts using the project card as the creative</td>
+          </tr>
+          <tr>
+            <td>6</td><td><strong>Organic / direct</strong></td><td class="num">30</td><td class="num">₹0</td>
+            <td>Free upside — students who Google the workshop after seeing a screenshot</td>
+            <td>Nothing to buy. Measured separately so no paid channel is credited with it</td>
+          </tr>
+          <tr class="total">
+            <td></td><td>Total</td><td class="num">500</td><td class="num">₹2,000</td><td colspan="2">Meets the target inside the budget, with the reserve still unspent</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="footnote">
+        <span>All figures on this page are <strong>target assumptions</strong> or simulated demo data, not measured results.</span>
+        <span>Page 1 of 2 · AI Project Launchpad</span>
+      </div>
+    </section>
+
+    <!-- ============================== PAGE 2 ============================== -->
+    <section class="page">
+      <h2 class="section-title" style="margin-top:0">4 — The funnel, worked backwards from 500</h2>
+      <div class="cols-2">
+        <div>
+          <div class="funnel">
+            <div class="row"><span>Impressions</span><div class="track"><i style="width:100%"></i></div><b>1,000</b></div>
+            <div class="row"><span>Landing page visitors <span class="conv">65%</span></span><div class="track"><i style="width:65%"></i></div><b>650</b></div>
+            <div class="row"><span>Project interactions <span class="conv">69%</span></span><div class="track"><i style="width:45%"></i></div><b>450</b></div>
+            <div class="row"><span>Registration started <span class="conv">78%</span></span><div class="track"><i style="width:35%"></i></div><b>350</b></div>
+            <div class="row"><span>Direct registrations <span class="conv">71%</span></span><div class="track"><i style="width:25%"></i></div><b>250</b></div>
+            <div class="row"><span>Referral registrations</span><div class="track"><i style="width:25%"></i></div><b>250</b></div>
+            <div class="row hi"><span>Total registrations</span><div class="track"><i style="width:50%"></i></div><b>500</b></div>
+          </div>
+          <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-top:14px">
+            The model is falsifiable: if visitor→generator drops below 65%, the hero is wrong and we fix copy
+            before spending. If the referral curve flattens on day 3, the loop is broken — not the traffic.
+          </p>
+        </div>
+        <div class="card violet">
+          <h3>The loop that makes 500 possible</h3>
+          <div class="loop">
+            <span class="step">Register</span><span class="arrow">→</span>
+            <span class="step">Get a matched project</span><span class="arrow">→</span>
+            <span class="step">Get a referral code</span><span class="arrow">→</span>
+            <span class="step">Share on WhatsApp</span><span class="arrow">→</span>
+            <span class="step">Friends register</span><span class="arrow">→</span>
+            <span class="step">Rank rises</span><span class="arrow">→</span>
+            <span class="step">Share again</span>
+          </div>
+          <ul>
+            <li><strong>Share at peak enthusiasm:</strong> the ask lands seconds after they receive their own project idea</li>
+            <li><strong>Ladder starts at 1 referral</strong> — instantly earnable; runs to 10 (Builder Wall feature)</li>
+            <li><strong>Status, not cash:</strong> a public rank keeps students sharing for 7 days; a ₹100 voucher would not</li>
+            <li><strong>₹0 marginal cost:</strong> every reward is digital — templates, priority Q&amp;A, a place on the wall</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="section-title">5 — Seven days, with a decision point on day 3</h2>
+      <table>
+        <thead>
+          <tr><th>Day</th><th>Focus</th><th>Actions</th><th>Goal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>0</strong></td><td>Prepare</td><td>Recruit 10 ambassadors (1/college), ship funnel, draft 3 WhatsApp variants</td><td>10/10 ambassadors</td></tr>
+          <tr><td><strong>1</strong></td><td>Seed groups</td><td>Post the project-card creative in 25 final-year groups; start hero A/B test</td><td>30 registrations</td></tr>
+          <tr><td><strong>2</strong></td><td>Turn on the loop</td><td>Ship milestone 1 rewards, publish first Builder Wall, email placement lists</td><td>Sharing rate &gt;20%</td></tr>
+          <tr><td><strong>3</strong></td><td><span class="pill cy">Decision</span> Read &amp; reallocate</td><td>Cut any channel above ₹15/registration; release the ₹300 reserve to the winner; publish the college scoreboard</td><td>150 registrations</td></tr>
+          <tr><td><strong>4</strong></td><td>Scale the winner</td><td>Double targets for the top 3 colleges; LinkedIn post; second WhatsApp wave with a new hook</td><td>250 registrations</td></tr>
+          <tr><td><strong>5</strong></td><td>Honest urgency</td><td>Lock the winning variant; reminder email to openers; real seats-left in every share message</td><td>350 registrations</td></tr>
+          <tr><td><strong>6</strong></td><td>Close the loop</td><td>Final call in all groups; feature the top 5 builders; personal follow-up to warm leads</td><td>450 registrations</td></tr>
+          <tr><td><strong>7</strong></td><td><span class="pill acid">Ship</span> Hit 500</td><td>Push the 5 densest groups; auto-waitlist at the cap; publish the “what 500 students are building” recap</td><td>500 + 60% attendance</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title">6 — Budget: ₹2,000, all of it to distribution</h2>
+      <div class="cols-2">
+        <table>
+          <thead><tr><th>Allocation</th><th class="num">Amount</th><th>Why this line exists</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Ambassador incentives</strong> (40%)</td><td class="num">₹800</td><td>₹80 × 10 ambassadors, paid in digital rewards only on verified milestones. The only people who unlock permissioned groups</td></tr>
+            <tr><td><strong>Creative &amp; distribution</strong> (25%)</td><td class="num">₹500</td><td>One project-card template and one reel, reused across 10 campuses instead of per-campus design</td></tr>
+            <tr><td><strong>Community activation</strong> (20%)</td><td class="num">₹400</td><td>Funds channel #1 directly: group pinning, admin thank-yous, forward-friendly assets</td></tr>
+            <tr><td><strong>Experimentation reserve</strong> (15%)</td><td class="num">₹300</td><td>Held back on purpose, released on day 3 to the best cost-per-registration channel</td></tr>
+            <tr class="total"><td>Total</td><td class="num">₹2,000</td><td>₹0 to paid ads</td></tr>
+          </tbody>
+        </table>
+        <div>
+          <div class="bar" aria-hidden>
+            <i style="width:40%;background:#4A7500"></i>
+            <i style="width:25%;background:#0E93B0"></i>
+            <i style="width:20%;background:#5B3DF5"></i>
+            <i style="width:15%;background:#E2621A"></i>
+          </div>
+          <div class="cols-3" style="margin-top:14px">
+            <div class="stat"><span>Blended CPR</span><b>₹4.00</b></div>
+            <div class="stat acid"><span>Referral CPR</span><b>₹0</b></div>
+            <div class="stat"><span>Kill threshold</span><b>₹15</b></div>
+          </div>
+          <div class="card" style="margin-top:14px">
+            <h3>Why no paid ads</h3>
+            <p>At ₹2,000, Meta ads buy roughly ₹40 CPM of attention from people who are not final-year students. The same money pays 10 ambassadors who already sit inside the right WhatsApp groups and cost nothing to trust.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">7 — Metrics, experiments, and the judgment calls behind them</h2>
+      <div class="cols-3">
+        <div class="card">
+          <h3>Metrics</h3>
+          <ul>
+            <li><strong>North star:</strong> 500 verified registrations, 60%+ attendance</li>
+            <li><strong>Leading:</strong> visitor→generator ≥65%, generator→reg start ≥75%, sharing rate ≥20%</li>
+            <li><strong>Guardrails:</strong> &lt;₹15 CPR per channel, no college &gt;15% of total, one referral credit per verified email</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Experiments (2 already live in the build)</h3>
+          <ul>
+            <li><strong>Hero A/B (live):</strong> “Build Your First AI Project in 60 Minutes” vs “Stop Watching AI Tutorials. Build One.” — metric: landing→registration_started</li>
+            <li><strong>CTA A/B (live):</strong> “Reserve My Free Spot” vs “Build My First AI Project” — metric: CTA CTR</li>
+            <li><strong>Referral ask:</strong> 3-friend vs 5-friend milestone — metric: share→signup</li>
+            <li><strong>Ambassador framing:</strong> “share with friends” vs “get 20 from your college”</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>If it breaks, where</h3>
+          <ul>
+            <li><strong>Groups ignore the link</strong> → lead with a project idea, not an invitation</li>
+            <li><strong>Form drop-off</strong> → registrants arrive pre-primed from the generator; 6 fields, no payment, no OTP</li>
+            <li><strong>Sharing stops by day 2</strong> → public daily re-ranking, and milestone 1 lands after a single referral</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="section-title">8 — What AI suggested that I rejected (and why)</h2>
+      <div class="cols-3">
+        <div class="card">
+          <h3>“Fake 24-hour scarcity timers”</h3>
+          <p>Rejected. A timer that resets daily destroys trust the moment a student notices. The 500-seat cap is real scarcity — use that instead.</p>
+        </div>
+        <div class="card">
+          <h3>“Testimonials from past students”</h3>
+          <p>Rejected. The workshop has not run yet. Fabricated quotes are the fastest way to make a reviewer discount the whole submission, so the page states expected outcomes instead.</p>
+        </div>
+        <div class="card">
+          <h3>“12-channel + LLM-chatbot plan”</h3>
+          <p>Rejected. Breadth is not a strategy in 7 days with ₹2,000. Cut to 5 ranked channels with budgeted yields, and made the recommender rule-based so the demo never depends on an API key.</p>
+        </div>
+      </div>
+
+      <div class="footnote">
+        <span>Working site: Home · Workshop · Projects · Builder Wall, plus reviewer routes <strong>/strategy</strong> (thinking and AI notes) and <strong>/admin</strong> (campaign read).</span>
+        <span>Page 2 of 2 · AI Project Launchpad</span>
+      </div>
+    </section>
+  </body>
+</html>

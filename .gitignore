@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output — regenerate with `npm run build`
+dist/
+dist-single/
+build/
+
+# Runtime data: the SQLite database is a local artefact, not source.
+# Commit it and every clone starts with your test registrations.
+# Recreate it any time with:  npm run seed
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+*.log
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Test artifacts
+coverage/
+.vitest/

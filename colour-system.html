@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Colour system — measured, not eyeballed | AI Project Launchpad</title>
+</head>
+<body style="margin:0;background:#F1F4F9;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#0B0F19;-webkit-font-smoothing:antialiased">
+<div style="max-width:1080px;margin:0 auto;padding:40px 22px 64px">
+
+  <p style="margin:0;font:500 10.5px/1 ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:#68707E">Colour system · white theme</p>
+  <h1 style="margin:14px 0 0;font-size:38px;line-height:1.08;letter-spacing:-.035em;font-weight:700">The palette that suits —<br><span style="color:#4B5468">measured, not eyeballed.</span></h1>
+  <p style="margin:16px 0 0;max-width:62ch;font-size:14.5px;line-height:1.65;color:#4B5468">
+    The white theme shipped with <b>14 failing WCAG pairs</b>. Two of them were invisible UI, not just
+    low-contrast text: a lime progress bar at <b>1.02:1</b> against its own track, and 15 status dots at
+    <b>1.17:1</b> on white. Every ratio on this page is computed from the live tokens, and
+    <code style="font:500 12px/1 ui-monospace,monospace;background:#fff;border:1px solid #E7E9F2;border-radius:5px;padding:1px 5px">tests/colour.test.ts</code>
+    now fails the build if any of them regress.
+  </p>
+
+  <div style="margin-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+    <div style="background:#fff;border:1px solid #E7E9F2;border-radius:12px;padding:14px">
+      <div style="font:600 24px/1 ui-monospace,monospace;color:#3730A3;font-variant-numeric:tabular-nums">0</div>
+      <div style="margin-top:6px;font-size:11.5px;color:#4B5468">failing text pairs<br><span style="color:#68707E">was 9</span></div>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E9F2;border-radius:12px;padding:14px">
+      <div style="font:600 24px/1 ui-monospace,monospace;color:#3730A3;font-variant-numeric:tabular-nums">0</div>
+      <div style="margin-top:6px;font-size:11.5px;color:#4B5468">failing mark pairs<br><span style="color:#68707E">was 5</span></div>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E9F2;border-radius:12px;padding:14px">
+      <div style="font:600 24px/1 ui-monospace,monospace;color:#3730A3;font-variant-numeric:tabular-nums">39</div>
+      <div style="margin-top:6px;font-size:11.5px;color:#4B5468">automated colour<br>specs</div>
+    </div>
+    <div style="background:#fff;border:1px solid #E7E9F2;border-radius:12px;padding:14px">
+      <div style="font:600 24px/1 ui-monospace,monospace;color:#3730A3;font-variant-numeric:tabular-nums">45&deg;</div>
+      <div style="margin-top:6px;font-size:11.5px;color:#4B5468">closest chart hues<br><span style="color:#68707E">min 40&deg; target</span></div>
+    </div>
+  </div>
+
+  <h2 style="margin:40px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#68707E;font-weight:600">1 — The one rule that fixes everything</h2>
+  <div style="margin-top:14px;background:#fff;border:1px solid #E7E9F2;border-radius:16px;padding:20px 22px">
+    <p style="margin:0;font-size:15px;line-height:1.6;color:#0B0F19">
+      <b style="background:#4F46E5;color:#fff;padding:2px 7px;border-radius:6px">Indigo leads. Lime highlights. Nothing else competes.</b>
+    </p>
+    <p style="margin:12px 0 0;font-size:13.5px;line-height:1.65;color:#4B5468">
+      #CCFF4D scores <b>1.17:1</b> on white and <b>1.02:1</b>
+      on the progress track — it cannot be read, outlined, or seen as a dot. But put ink on top of it and it
+      becomes the <b>strongest pair in the system at 16.39:1</b>.
+      That is a highlighter, and a highlighter is all it is.
+    </p>
+    <p style="margin:12px 0 0;font-size:13.5px;line-height:1.65;color:#4B5468">
+      So the chrome went to indigo (#4F46E5, 6.29:1 — works as text AND under
+      white text), and lime was reduced to four deliberate appearances: the headline swash, the registration
+      success moment, the one card theme students can pick, and a fold whisper. One accent doing one job
+      loudly beats three accents all doing half a job.
+    </p>
+  </div>
+
+  <div style="margin-top:14px;display:grid;gap:12px">
+      <div style="border:1px solid #E7E9F2;border-radius:14px;background:#fff;padding:16px">
+        <p style="margin:0 0 12px;font:600 12.5px/1.3 ui-sans-serif,system-ui;color:#0B0F19">The headline accent — the single biggest change</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <div style="min-height:52px;display:flex;align-items:center"><span style="font:700 26px/1.08 ui-sans-serif,system-ui;letter-spacing:-.03em;background:linear-gradient(100deg,#4a2fd6,#0b7a8f 26%,#4a7500 52%,#4a2fd6 78%,#0b7a8f);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:260% 100%">AI Project</span></div>
+            <p style="margin:8px 0 0;font:400 11px/1.5 ui-sans-serif,system-ui;color:#4B5468">Five animated stops panning indigo &rarr; teal &rarr; olive. At every frame the two words are <b>three different colours</b>, and the olive stop measures 5.5:1 — legible, but it reads as muddy to anyone looking at it. This was the most "unfinished" thing on the page.</p>
+          </div>
+          <div>
+            <div style="min-height:52px;display:flex;align-items:center"><span style="font:700 26px/1.08 ui-sans-serif,system-ui;letter-spacing:-.03em;color:#0b0f19;background:#ccff4d;padding:.02em .2em .09em;border-radius:.42em">AI Project</span></div>
+            <p style="margin:8px 0 0;font:400 11px/1.5 ui-sans-serif,system-ui;color:#4B5468">A single lime highlighter. Ink on lime is <b>16.39:1</b> — the strongest pair in the whole system, better than white on indigo. It wipes in like a marker on load, then stays put.</p>
+          </div>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;background:#fff;padding:16px">
+        <p style="margin:0 0 12px;font:600 12.5px/1.3 ui-sans-serif,system-ui;color:#0B0F19">Status dot — “live”, “included”, “milestone”</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <div style="min-height:52px;display:flex;align-items:center"><span style="display:inline-flex;align-items:center;gap:8px;font:500 12.5px/1 ui-sans-serif,system-ui;color:#4B5468"><span style="width:8px;height:8px;border-radius:99px;background:#4F46E5"></span>Live</span></div>
+            <p style="margin:8px 0 0;font:400 11px/1.5 ui-sans-serif,system-ui;color:#4B5468">6.29:1 on white — the dot is effectively <b>invisible</b>, and it was used at 15 sites.</p>
+          </div>
+          <div>
+            <div style="min-height:52px;display:flex;align-items:center"><span style="display:inline-flex;align-items:center;gap:8px;font:500 12.5px/1 ui-sans-serif,system-ui;color:#4B5468"><span style="width:8px;height:8px;border-radius:99px;background:#3730A3"></span>Live</span></div>
+            <p style="margin:8px 0 0;font:400 11px/1.5 ui-sans-serif,system-ui;color:#4B5468">Same hue, read as a mark: <b>9.93:1</b>. Lime keeps its job, the dot keeps its meaning.</p>
+          </div>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;background:#fff;padding:16px">
+        <p style="margin:0 0 12px;font:600 12.5px/1.3 ui-sans-serif,system-ui;color:#0B0F19">10px mono labels (the eyebrows, the stats)</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <div style="min-height:52px;display:flex;align-items:center"><span style="font:500 10px/1 ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A93A6">DEMO CAMPAIGN DATA</span></div>
+            <p style="margin:8px 0 0;font:400 11px/1.5 ui-sans-serif,system-ui;color:#4B5468">#8A93A6 — 2.80:1 on surface-3. Small caps are the <i>hardest</i> text to read, and this failed AA.</p>
+          </div>
+          <div>
+            <div style="min-height:52px;display:flex;align-items:center"><span style="font:500 10px/1 ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase;color:#68707E">DEMO CAMPAIGN DATA</span></div>
+            <p style="margin:8px 0 0;font:400 11px/1.5 ui-sans-serif,system-ui;color:#4B5468">#68707E — <b>4.53:1</b>. Still the quietest tier, but now legible.</p>
+          </div>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;background:#fff;padding:16px">
+        <p style="margin:0 0 12px;font:600 12.5px/1.3 ui-sans-serif,system-ui;color:#0B0F19">Input &amp; secondary-button boundaries</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <div style="min-height:52px;display:flex;align-items:center"><span style="display:inline-block;padding:9px 14px;border-radius:10px;background:#fff;border:1px solid #D3D9E6;font:500 12.5px/1 ui-sans-serif,system-ui;color:#0B0F19">Your email</span></div>
+            <p style="margin:8px 0 0;font:400 11px/1.5 ui-sans-serif,system-ui;color:#4B5468">#D3D9E6 — 1.42:1. On a white form the border <b>is</b> the control.</p>
+          </div>
+          <div>
+            <div style="min-height:52px;display:flex;align-items:center"><span style="display:inline-block;padding:9px 14px;border-radius:10px;background:#fff;border:1.5px solid #7E8798;font:500 12.5px/1 ui-sans-serif,system-ui;color:#0B0F19">Your email</span></div>
+            <p style="margin:8px 0 0;font:400 11px/1.5 ui-sans-serif,system-ui;color:#4B5468">#7E8798 — <b>3.62:1</b> on white, 3.28:1 on surface-3. Passes in every context it is used.</p>
+          </div>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;background:#fff;padding:16px">
+        <p style="margin:0 0 12px;font:600 12.5px/1.3 ui-sans-serif,system-ui;color:#0B0F19">Coloured text sitting on its own tint</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <div style="min-height:52px;display:flex;align-items:center"><span style="display:inline-block;padding:7px 12px;border-radius:10px;background:#fcefe8;color:#E2621A;font:600 12px/1 ui-sans-serif,system-ui">Only 153 spots left</span></div>
+            <p style="margin:8px 0 0;font:400 11px/1.5 ui-sans-serif,system-ui;color:#4B5468">#E2621A on its own 10% wash = 3.11:1. The tint that makes it look designed is the thing that breaks it.</p>
+          </div>
+          <div>
+            <div style="min-height:52px;display:flex;align-items:center"><span style="display:inline-block;padding:7px 12px;border-radius:10px;background:#f7ede7;color:#B04A12;font:600 12px/1 ui-sans-serif,system-ui">Only 153 spots left</span></div>
+            <p style="margin:8px 0 0;font:400 11px/1.5 ui-sans-serif,system-ui;color:#4B5468">#B04A12 on the same wash = <b>4.75:1</b>. Verified for every tinted badge in the system.</p>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <h2 style="margin:40px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#68707E;font-weight:600">2 — The tokens</h2>
+  <p style="margin:10px 0 0;font-size:13.5px;line-height:1.65;color:#4B5468;max-width:66ch">
+    Names describe <i>role</i>, not hue, so the theme is a token swap. The ratio shown is against white;
+    the badges in the app also sit on surface-2 and surface-3, which are verified separately.
+  </p>
+  <div style="margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px">
+      <div style="border:1px solid #E7E9F2;border-radius:14px;overflow:hidden;background:#fff">
+        <div style="height:64px;background:#0B0F19;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E7E9F2">
+          <span style="font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#4F46E5;background:rgba(255,255,255,.82);padding:3px 6px;border-radius:6px">ink</span>
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <code style="font:600 12px/1.4 ui-monospace,monospace;color:#0B0F19">#0B0F19</code>
+            <span style="font:500 11px/1.4 ui-sans-serif,system-ui;color:#4B5468"><b style="font-variant-numeric:tabular-nums">19.15:1</b></span>
+          </div>
+          <div style="margin-top:2px;font:400 10px/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:#68707E">primary text</div>
+          <p style="margin:8px 0 0;font:400 11.5px/1.55 ui-sans-serif,system-ui;color:#4B5468">Headlines, body, and any text on a light surface.</p>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;overflow:hidden;background:#fff">
+        <div style="height:64px;background:#4B5468;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E7E9F2">
+          <span style="font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#4B5468;background:rgba(255,255,255,.82);padding:3px 6px;border-radius:6px">ink-muted</span>
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <code style="font:600 12px/1.4 ui-monospace,monospace;color:#0B0F19">#4B5468</code>
+            <span style="font:500 11px/1.4 ui-sans-serif,system-ui;color:#4B5468"><b style="font-variant-numeric:tabular-nums">7.59:1</b></span>
+          </div>
+          <div style="margin-top:2px;font:400 10px/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:#68707E">body copy</div>
+          <p style="margin:8px 0 0;font:400 11.5px/1.55 ui-sans-serif,system-ui;color:#4B5468">Paragraphs and labels. 7.3:1 on surface-3, so it stays crisp on cards.</p>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;overflow:hidden;background:#fff">
+        <div style="height:64px;background:#68707E;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E7E9F2">
+          <span style="font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#68707E;background:rgba(255,255,255,.82);padding:3px 6px;border-radius:6px">ink-faint</span>
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <code style="font:600 12px/1.4 ui-monospace,monospace;color:#0B0F19">#68707E</code>
+            <span style="font:500 11px/1.4 ui-sans-serif,system-ui;color:#4B5468"><b style="font-variant-numeric:tabular-nums">4.99:1</b></span>
+          </div>
+          <div style="margin-top:2px;font:400 10px/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:#68707E">meta / 10px labels</div>
+          <p style="margin:8px 0 0;font:400 11.5px/1.55 ui-sans-serif,system-ui;color:#4B5468">The quietest tier — now the floor for AA, not a decorative grey.</p>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;overflow:hidden;background:#fff">
+        <div style="height:64px;background:#7E8798;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E7E9F2">
+          <span style="font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#7E8798;background:rgba(255,255,255,.82);padding:3px 6px;border-radius:6px">line-strong</span>
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <code style="font:600 12px/1.4 ui-monospace,monospace;color:#0B0F19">#7E8798</code>
+            <span style="font:500 11px/1.4 ui-sans-serif,system-ui;color:#4B5468"><b style="font-variant-numeric:tabular-nums">3.62:1</b></span>
+          </div>
+          <div style="margin-top:2px;font:400 10px/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:#68707E">control boundary</div>
+          <p style="margin:8px 0 0;font:400 11.5px/1.55 ui-sans-serif,system-ui;color:#4B5468">Inputs, secondary buttons, strikethroughs — anything that must be found.</p>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;overflow:hidden;background:#fff">
+        <div style="height:64px;background:#4F46E5;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E7E9F2">
+          <span style="font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#4F46E5;background:rgba(255,255,255,.82);padding:3px 6px;border-radius:6px">brand</span>
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <code style="font:600 12px/1.4 ui-monospace,monospace;color:#0B0F19">#4F46E5</code>
+            <span style="font:500 11px/1.4 ui-sans-serif,system-ui;color:#4B5468"><b style="font-variant-numeric:tabular-nums">6.29:1</b></span>
+          </div>
+          <div style="margin-top:2px;font:400 10px/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:#68707E">interactive</div>
+          <p style="margin:8px 0 0;font:400 11.5px/1.55 ui-sans-serif,system-ui;color:#4B5468">Every button, link, active state and focus ring. Works in both directions: 6.3:1 as text, 6.3:1 under white text.</p>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;overflow:hidden;background:#fff">
+        <div style="height:64px;background:#3730A3;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E7E9F2">
+          <span style="font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#3730A3;background:rgba(255,255,255,.82);padding:3px 6px;border-radius:6px">brand-deep</span>
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <code style="font:600 12px/1.4 ui-monospace,monospace;color:#0B0F19">#3730A3</code>
+            <span style="font:500 11px/1.4 ui-sans-serif,system-ui;color:#4B5468"><b style="font-variant-numeric:tabular-nums">9.93:1</b></span>
+          </div>
+          <div style="margin-top:2px;font:400 10px/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:#68707E">indigo on tints</div>
+          <p style="margin:8px 0 0;font:400 11.5px/1.55 ui-sans-serif,system-ui;color:#4B5468">Icons and text sitting inside an indigo-tinted chip, where the plain indigo would thin out.</p>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;overflow:hidden;background:#fff">
+        <div style="height:64px;background:#CCFF4D;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E7E9F2">
+          <span style="font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#0B0F19;background:rgba(255,255,255,.82);padding:3px 6px;border-radius:6px">lime</span>
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <code style="font:600 12px/1.4 ui-monospace,monospace;color:#0B0F19">#CCFF4D</code>
+            <span style="font:500 11px/1.4 ui-sans-serif,system-ui;color:#4B5468"><b style="font-variant-numeric:tabular-nums">1.17:1</b></span>
+          </div>
+          <div style="margin-top:2px;font:400 10px/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:#68707E">the highlighter</div>
+          <p style="margin:8px 0 0;font:400 11.5px/1.55 ui-sans-serif,system-ui;color:#4B5468">Ink on it is 16.4:1 — the strongest pair we own. Loud behind ink, invisible anywhere else, so it is used in exactly four places.</p>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;overflow:hidden;background:#fff">
+        <div style="height:64px;background:#5B3DF5;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E7E9F2">
+          <span style="font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5B3DF5;background:rgba(255,255,255,.82);padding:3px 6px;border-radius:6px">violet</span>
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <code style="font:600 12px/1.4 ui-monospace,monospace;color:#0B0F19">#5B3DF5</code>
+            <span style="font:500 11px/1.4 ui-sans-serif,system-ui;color:#4B5468"><b style="font-variant-numeric:tabular-nums">6.12:1</b></span>
+          </div>
+          <div style="margin-top:2px;font:400 10px/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:#68707E">secondary accent</div>
+          <p style="margin:8px 0 0;font:400 11.5px/1.55 ui-sans-serif,system-ui;color:#4B5468">Intelligence-flavoured affordances: the simulator, matched projects.</p>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;overflow:hidden;background:#fff">
+        <div style="height:64px;background:#0A7186;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E7E9F2">
+          <span style="font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#0A7186;background:rgba(255,255,255,.82);padding:3px 6px;border-radius:6px">cyan</span>
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <code style="font:600 12px/1.4 ui-monospace,monospace;color:#0B0F19">#0A7186</code>
+            <span style="font:500 11px/1.4 ui-sans-serif,system-ui;color:#4B5468"><b style="font-variant-numeric:tabular-nums">5.65:1</b></span>
+          </div>
+          <div style="margin-top:2px;font:400 10px/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:#68707E">supporting accent</div>
+          <p style="margin:8px 0 0;font:400 11.5px/1.55 ui-sans-serif,system-ui;color:#4B5468">One of two accents demoted out of the chrome. Chart + data roles.</p>
+        </div>
+      </div>
+      <div style="border:1px solid #E7E9F2;border-radius:14px;overflow:hidden;background:#fff">
+        <div style="height:64px;background:#B04A12;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E7E9F2">
+          <span style="font:700 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#B04A12;background:rgba(255,255,255,.82);padding:3px 6px;border-radius:6px">ember</span>
+        </div>
+        <div style="padding:10px 12px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <code style="font:600 12px/1.4 ui-monospace,monospace;color:#0B0F19">#B04A12</code>
+            <span style="font:500 11px/1.4 ui-sans-serif,system-ui;color:#4B5468"><b style="font-variant-numeric:tabular-nums">5.48:1</b></span>
+          </div>
+          <div style="margin-top:2px;font:400 10px/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:#68707E">attention</div>
+          <p style="margin:8px 0 0;font:400 11.5px/1.55 ui-sans-serif,system-ui;color:#4B5468">Warning and “almost full” states. Readable on its own tint.</p>
+        </div>
+      </div>
+  </div>
+
+  <h2 style="margin:40px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#68707E;font-weight:600">3 — Why the chart has these six colours</h2>
+  <p style="margin:10px 0 0;font-size:13.5px;line-height:1.65;color:#4B5468;max-width:66ch">
+    Two earlier versions failed. <b>#5B3DF5 next to #7C5CF5</b> were two violets nobody can tell apart
+    in a stacked bar. Then a light grey-blue for the smallest channel — quiet-looking, but at
+    <b>2.56:1</b> it was not a visible mark. On a white chart every mark must be mid-to-dark, which
+    collapses the lightness range, so <b>hue is the only separator left</b>. These six sit
+    45&deg;–179&deg; apart and all clear 3:1 on white.
+  </p>
+  <div style="margin-top:14px;background:#fff;border:1px solid #E7E9F2;border-radius:16px;padding:18px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px"><div style="text-align:center"><div style="height:52px;border-radius:10px;background:#4A7500;border:1px solid rgba(11,15,25,.08)"></div><div style="margin-top:6px;font:600 10.5px/1.35 ui-sans-serif,system-ui;color:#0B0F19">WhatsApp</div><code style="font:400 10px/1.5 ui-monospace,monospace;color:#68707E">#4A7500</code><div style="font:500 10px/1.5 ui-monospace,monospace;color:#4B5468">5.47:1</div></div><div style="text-align:center"><div style="height:52px;border-radius:10px;background:#15803D;border:1px solid rgba(11,15,25,.08)"></div><div style="margin-top:6px;font:600 10.5px/1.35 ui-sans-serif,system-ui;color:#0B0F19">Organic / direct</div><code style="font:400 10px/1.5 ui-monospace,monospace;color:#68707E">#15803D</code><div style="font:500 10px/1.5 ui-monospace,monospace;color:#4B5468">5.02:1</div></div><div style="text-align:center"><div style="height:52px;border-radius:10px;background:#0E93B0;border:1px solid rgba(11,15,25,.08)"></div><div style="margin-top:6px;font:600 10.5px/1.35 ui-sans-serif,system-ui;color:#0B0F19">College clubs</div><code style="font:400 10px/1.5 ui-monospace,monospace;color:#68707E">#0E93B0</code><div style="font:500 10px/1.5 ui-monospace,monospace;color:#4B5468">3.61:1</div></div><div style="text-align:center"><div style="height:52px;border-radius:10px;background:#6D28D9;border:1px solid rgba(11,15,25,.08)"></div><div style="margin-top:6px;font:600 10.5px/1.35 ui-sans-serif,system-ui;color:#0B0F19">Referral loop</div><code style="font:400 10px/1.5 ui-monospace,monospace;color:#68707E">#6D28D9</code><div style="font:500 10px/1.5 ui-monospace,monospace;color:#4B5468">7.10:1</div></div><div style="text-align:center"><div style="height:52px;border-radius:10px;background:#C2185B;border:1px solid rgba(11,15,25,.08)"></div><div style="margin-top:6px;font:600 10.5px/1.35 ui-sans-serif,system-ui;color:#0B0F19">LinkedIn</div><code style="font:400 10px/1.5 ui-monospace,monospace;color:#68707E">#C2185B</code><div style="font:500 10px/1.5 ui-monospace,monospace;color:#4B5468">5.87:1</div></div><div style="text-align:center"><div style="height:52px;border-radius:10px;background:#E2621A;border:1px solid rgba(11,15,25,.08)"></div><div style="margin-top:6px;font:600 10.5px/1.35 ui-sans-serif,system-ui;color:#0B0F19">Email</div><code style="font:400 10px/1.5 ui-monospace,monospace;color:#68707E">#E2621A</code><div style="font:500 10px/1.5 ui-monospace,monospace;color:#4B5468">3.50:1</div></div></div>
+    <div style="margin-top:16px">
+      <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #E7E9F2"><span style="font:400 12.5px/1.5 ui-sans-serif,system-ui;color:#4B5468">Closest pair by hue (need ≥ 40&deg;)</span><span style="font:600 12px/1.5 ui-monospace,monospace;color:#3730A3;white-space:nowrap">45&deg;</span></div>
+      <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #E7E9F2"><span style="font:400 12.5px/1.5 ui-sans-serif,system-ui;color:#4B5468">Lowest mark vs white</span><span style="font:600 12px/1.5 ui-monospace,monospace;color:#3730A3;white-space:nowrap">3.50:1</span></div>
+      <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #E7E9F2"><span style="font:400 12.5px/1.5 ui-sans-serif,system-ui;color:#4B5468">Lowest pair by lightness — safe, hues are 169&deg; apart</span><span style="font:600 12px/1.5 ui-monospace,monospace;color:#3730A3;white-space:nowrap">1.03:1</span></div>
+    </div>
+    <p style="margin:12px 0 0;font-size:12px;line-height:1.6;color:#68707E">
+      Palette lives in <code style="font:500 11px/1 ui-monospace,monospace">src/lib/palette.ts</code> — one
+      file, so a chart series can never be a one-off hex again.
+    </p>
+  </div>
+
+  <h2 style="margin:40px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#68707E;font-weight:600">4 — What is deliberately left soft</h2>
+  <div style="margin-top:14px;background:#fff;border:1px solid #E7E9F2;border-radius:16px;padding:6px 18px">
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #E7E9F2"><span style="font:400 12.5px/1.5 ui-sans-serif,system-ui;color:#4B5468">Decorative dividers — line #E7E9F2</span><span style="font:600 12px/1.5 ui-monospace,monospace;color:#3730A3;white-space:nowrap">1.21:1</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #E7E9F2"><span style="font:400 12.5px/1.5 ui-sans-serif,system-ui;color:#4B5468">Lime fill behind ink — brand + ink</span><span style="font:600 12px/1.5 ui-monospace,monospace;color:#3730A3;white-space:nowrap">3.05:1</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #E7E9F2"><span style="font:400 12.5px/1.5 ui-sans-serif,system-ui;color:#4B5468">WhatsApp button — #25D366 + #04240F</span><span style="font:600 12px/1.5 ui-monospace,monospace;color:#3730A3;white-space:nowrap">8.37:1</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #E7E9F2"><span style="font:400 12.5px/1.5 ui-sans-serif,system-ui;color:#4B5468">Card shadows and 1px hairlines</span><span style="font:600 12px/1.5 ui-monospace,monospace;color:#3730A3;white-space:nowrap">decorative</span></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:12.5px;line-height:1.65;color:#4B5468;max-width:66ch">
+    WCAG&nbsp;1.4.11 applies to graphics <i>required to understand content</i>. A separator between two
+    sections is not one — darkening every hairline would make the page noisy for no accessibility gain.
+    Those three exemptions are pinned in the test file with the reason written next to them, so they are
+    decisions rather than oversights.
+  </p>
+
+  <div style="margin-top:36px;border-top:1px solid #E7E9F2;padding-top:16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <p style="margin:0;font-size:11.5px;color:#68707E">AI Project Launchpad — colour audit · ratios computed with the WCAG 2.1 relative-luminance formula</p>
+    <p style="margin:0;font-size:11.5px;color:#68707E">Enforced by <code style="font:500 11px/1 ui-monospace,monospace">npm test</code></p>
+  </div>
+</div>
+</body>
+</html>

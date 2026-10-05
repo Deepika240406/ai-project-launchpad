@@ -1,0 +1,418 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   AI PROJECT LAUNCHPAD — DESIGN SYSTEM (light)
+   --------------------------------------------------------------------------
+   Tokens live in tailwind.config.js. This file owns primitives (.btn, .card,
+   .field …) and the page-level background layers. Colour names are semantic
+   (ink / surface / line / brand), so the whole product can be re-themed by
+   editing the config alone.
+   ========================================================================== */
+
+@layer base {
+  :root {
+    --brand: 79 70 229;      /* indigo */
+    --brand-deep: 55 48 163;
+    --lime: 204 255 77;
+    --violet: 109 40 217;
+    --cyan: 10 113 134;
+    --ink: 11 15 25;
+    --line: 231 233 242;
+
+    color-scheme: light;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-surface text-ink font-sans antialiased;
+    /* ONE colour story: indigo, with a single lime whisper at the fold.
+       The old version washed violet + cyan + lime at once, which is what made
+       the paper look faintly dirty. */
+    background-image:
+      radial-gradient(900px 480px at 8% -10%, rgba(79, 70, 229, 0.07), transparent 62%),
+      radial-gradient(760px 420px at 96% 0%, rgba(99, 102, 241, 0.055), transparent 60%),
+      radial-gradient(720px 420px at 50% 108%, rgba(204, 255, 77, 0.1), transparent 68%);
+    background-attachment: fixed;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'ss01';
+  }
+
+  /* Engineering grid, faded out towards the fold. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: linear-gradient(to right, rgba(11, 15, 25, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11, 15, 25, 0.045) 1px, transparent 1px);
+    background-size: 58px 58px;
+    mask-image: radial-gradient(125% 85% at 50% 0%, #000 12%, transparent 72%);
+  }
+
+  /* Barely-there grain. Above ~0.02 it reads as dirty on white. */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tightest text-ink;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: rgba(204, 255, 77, 0.55);
+    color: #0b0f19;
+  }
+
+  /* Focus: lime is invisible on white, so the ring uses the deep brand tone. */
+  :focus-visible {
+    outline: 2px solid rgb(var(--brand-deep));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-ink-faint;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f4f6fa;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ccd3e0;
+    border-radius: 99px;
+    border: 3px solid #f4f6fa;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b2bbcc;
+  }
+
+  select option {
+    background: #ffffff;
+    color: #0b0f19;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-7 lg:px-8;
+  }
+
+  /* Frosted panel — used for sticky headers and overlays. */
+  .glass {
+    @apply border border-line bg-white/80 backdrop-blur-xl;
+  }
+
+  /* Elevated card: white + hairline border + soft shadow. */
+  .surface {
+    @apply rounded-2xl border border-line bg-card shadow-card;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-line-strong to-transparent;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-muted shadow-[0_1px_2px_rgba(11,15,25,0.04)];
+  }
+  /* A 5px indigo dot before the label reads as a live system rather than a
+     static badge — cheap, and it ties the chip to the accent. */
+  .eyebrow::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 99px;
+    background: rgb(var(--brand));
+  }
+
+  /* ------------------------------------------------------------------ buttons */
+  .btn {
+    @apply relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-45;
+  }
+
+  /* Brand lime. Dark text on lime is ~16:1 contrast; the inner ring keeps the
+     button from dissolving into a white page. */
+  .btn-primary {
+    @apply bg-brand text-white shadow-[0_2px_8px_-2px_rgba(79,70,229,0.5)] hover:bg-brand-deep hover:shadow-[0_10px_26px_-10px_rgba(79,70,229,0.7)] active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply border border-line-strong bg-card text-ink shadow-[0_1px_2px_rgba(11,15,25,0.05)] hover:border-ink/20 hover:bg-surface-2 active:scale-[0.98];
+  }
+
+  /* High-emphasis neutral. */
+  .btn-ink {
+    @apply bg-ink text-white shadow-[0_8px_20px_-10px_rgba(11,15,25,0.7)] hover:bg-ink/90 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply text-ink-muted hover:bg-surface-3 hover:text-ink;
+  }
+
+  .btn-whatsapp {
+    @apply bg-[#25D366] text-[#04240F] shadow-[0_8px_20px_-10px_rgba(37,211,102,0.7)] hover:brightness-[1.04] active:scale-[0.98];
+  }
+
+  .btn-lg {
+    @apply px-7 py-4 text-[15px];
+  }
+
+  /* ------------------------------------------------------------------- inputs */
+  .field {
+    @apply w-full rounded-xl border border-line-strong bg-card px-4 py-3 text-sm text-ink shadow-[0_1px_2px_rgba(11,15,25,0.04)] transition-colors placeholder:text-ink-faint hover:border-ink/25 focus:border-brand-deep/60 focus:outline-none focus:ring-2 focus:ring-brand/40;
+  }
+
+  .field-error {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-lg border border-line bg-surface-2 px-2.5 py-1 text-[11px] font-medium text-ink-muted;
+  }
+
+  .mono-label {
+    @apply font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint;
+  }
+
+  /* ------------------------------------------------------------------- accent */
+  /* Two stops a few degrees apart, so the word stays one colour as it moves.
+     The previous five-stop run (indigo -> teal -> olive) smeared the headline
+     into mud at every frame — that was the single most "unfinished" thing on
+     the page. */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(96deg, #4f46e5 0%, #7c3aed 50%, #4f46e5 100%);
+    background-size: 220% 100%;
+    animation: gradient-pan 9s ease infinite;
+  }
+
+  /* ------------------------------------------------------------------ highlight
+     The signature element. Ink on lime is 16.4:1 — the strongest pair we own —
+     so this is the one place lime is allowed to be loud. The swash wipes in
+     like a marker, then stays put. */
+  .hl {
+    display: inline-block;
+    background-color: #ccff4d;
+    color: #0b0f19;
+    border-radius: 0.42em;
+    line-height: 1.06;
+    padding: 0.02em 0.2em 0.09em;
+    margin-inline: -0.06em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    box-shadow: 0 2px 10px -4px rgba(79, 70, 229, 0.35);
+    background-image: linear-gradient(90deg, #ccff4d 0%, #ccff4d 100%);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    animation: hl-sweep 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+  }
+  @keyframes hl-sweep {
+    to {
+      background-size: 100% 100%;
+    }
+  }
+
+  /* A slow specular band crossing the highlight — the marker stays, a light
+     moves over it. Ink-on-lime contrast is untouched: the band only lightens
+     the lime toward white in a thin stripe (ink on white is even stronger). */
+  .hl {
+    position: relative;
+    overflow: hidden;
+  }
+  .hl::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.55) 46%,
+      rgba(255, 255, 255, 0.12) 54%,
+      transparent 70%
+    );
+    background-size: 220% 100%;
+    animation: hl-shimmer 4.5s ease-in-out 1.2s infinite;
+    pointer-events: none;
+  }
+  @keyframes hl-shimmer {
+    0% {
+      background-position: 130% 0;
+    }
+    55%,
+    100% {
+      background-position: -130% 0;
+    }
+  }
+
+  /* Spotlight cards: a soft radial glow tracks the cursor. Premium, quiet —
+     the glow is felt more than seen. */
+  .spot {
+    position: relative;
+    isolation: isolate;
+  }
+  .spot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      240px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(91, 61, 245, 0.10),
+      transparent 64%
+    );
+    opacity: 0;
+    transition: opacity 0.28s ease;
+    pointer-events: none;
+  }
+  .spot:hover::before,
+  .spot:focus-within::before {
+    opacity: 1;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgba(79, 70, 229, 0.42);
+    box-shadow:
+      0 2px 6px rgba(11, 15, 25, 0.05),
+      0 26px 48px -26px rgba(11, 15, 25, 0.28);
+  }
+
+  .title-xl {
+    @apply text-[2.6rem] font-semibold leading-[1.02] sm:text-6xl lg:text-[4.6rem];
+  }
+
+  .title-lg {
+    @apply text-[2rem] font-semibold leading-[1.08] sm:text-4xl lg:text-[3.1rem];
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Inverse surface: dark panels inside a light page (code previews, modals). */
+  .inverse {
+    @apply bg-ink text-white;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The highlighter wipes in on load; with motion suppressed it is simply
+     already there. Without this it would animate to 0.01ms and look correct by
+     accident — better to state the intent. */
+  .hl {
+    background-size: 100% 100% !important;
+    animation: none !important;
+  }
+  .hl::after {
+    display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------ recharts
+   The library ships light defaults, but they are tuned for dense dashboards —
+   these overrides match the product's type scale and grid weight. */
+.recharts-cartesian-axis-tick text {
+  fill: #7c8598;
+  font-size: 11px;
+}
+.recharts-cartesian-grid line {
+  stroke: rgba(11, 15, 25, 0.07);
+}
+.recharts-default-tooltip {
+  background: #ffffff !important;
+  border: 1px solid #e7e9f2 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 18px 40px -18px rgba(11, 15, 25, 0.3) !important;
+}
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+  body::before,
+  body::after {
+    display: none;
+  }
+}
